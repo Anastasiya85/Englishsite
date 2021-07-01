@@ -5,6 +5,9 @@ from django.template.defaultfilters import slugify
 class Category(models.Model):
     name = models.CharField(max_length = 20)
 
+    def __str__(self):
+        return self.name
+
 class Subcategory(models.Model):
     name = models.CharField(max_length=40)
     category = models.ForeignKey('Category',  on_delete = models.CASCADE)

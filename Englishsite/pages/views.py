@@ -5,6 +5,7 @@ def post_category(request,category):
     posts = Post.object.filter(
         categories_name_contains = category
 
+
     )
     context = {
         'category': category,
