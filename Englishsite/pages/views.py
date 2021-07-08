@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from pages.models import Post,Category
+from pages.models import Post,Category,Subcategory
 
 def post_category(request,category):
-    posts = Post.object.filter(
+    posts = Post.objects.filter(
         categories_name_contains = category
 
 
@@ -14,7 +14,7 @@ def post_category(request,category):
     return render(request, 'post_category.html',context)
 
 def post_subcategory(request,subcategory):
-    posts = Post.object.filters(
+    posts = Post.objects.filter(
         subcategories_name_contains = subcategory
     )
     context = {
