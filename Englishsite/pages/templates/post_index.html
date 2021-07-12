@@ -1,32 +1,17 @@
 {% extends "base.html" %}
 
-{% post page_content %}
+{% block page_content %}
 <div class="col-md-8 offset-md-2">
-  <h1>Post Index</h1>
-  <hr>
+     {% if posts %}
   {% for post in posts %}
-  <h2><a href="{% url 'post_detail' post.pk%}">{{post.title}}</a></h2>
-  <small>
-       Categories:
-    {% for category in post.categories.all %}
-    <a href="{% url 'post_category' category.name %}">
-      {{category.name}}
-    </a>
+        {% for category in post.categories.all %}
+            <a href="{% url 'post_category' category.name %}">
+                {{ category.name }}
+            </a>
+        {% endfor %}
     {% endfor %}
-  </small>
-  <p>{{post.body| slice:"400"}}...</p>
-  {% endfor %}
+  {% else %}
+  <p>Break</p>
+  {% endif %}
 </div>
 {% endblock %}
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
-</head>
-<body>
-
-</body>
-</html>

@@ -3,7 +3,7 @@ from pages.models import Post,Category,Subcategory
 
 def post_category(request,category):
     posts = Post.objects.filter(
-        categories_name_contains = category
+        categories__name__contains = category
 
 
     )
@@ -15,11 +15,17 @@ def post_category(request,category):
 
 def post_subcategory(request,subcategory):
     posts = Post.objects.filter(
-        subcategories_name_contains = subcategory
+        subcategories__name__contains = subcategory
     )
     context = {
         'subcategory': subcategory,
         'posts': posts}
     return render(request, 'post_subcategory.html',context)
 
+
+def post_index(request):
+    posts = Post.objects.all()
+    context = {
+        'posts': posts,     }
+    return render(request, 'post_index.html', context)
 # Create your views here.
